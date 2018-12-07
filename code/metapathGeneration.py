@@ -16,7 +16,7 @@ class metapathGeneration:
         # 获得EPE
         self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
         # 获得EPDPE
-        self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
+        # self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
         # 获得EPDtPE
         self.get_UBCiBU(ep, '../data/pdt.txt', '../data/metapath/epdtpe_0.8.txt')
         # 获得PEP
