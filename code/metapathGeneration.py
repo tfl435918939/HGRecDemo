@@ -14,11 +14,11 @@ class metapathGeneration:
         self.cinum = dtnum + 1
         ep = self.load_ub('../data/ep_0.8.train')
         # 获得EPE
-        # self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
+        self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
         # 获得EPDPE
-        # self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
+        self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
         # 获得EPDtPE
-        # self.get_UBCiBU(ep, '../data/pdt.txt', '../data/metapath/epdtpe_0.8.txt')
+        self.get_UBCiBU(ep, '../data/pdt.txt', '../data/metapath/epdtpe_0.8.txt')
         # 获得PEP
         self.get_BUB(ep, '../data/metapath/pep_0.8.txt')
         # 获得PDtP
@@ -34,6 +34,7 @@ class metapathGeneration:
             for line in infile.readlines():
                 user, item, rating = line.strip().split('\t')
                 ub[int(user)][int(item)] = 1
+        ub = ss.csc_matrix(ub)
         return ub
 
     def get_UBU(self, ub, targetfile):
@@ -41,21 +42,16 @@ class metapathGeneration:
         uu = ub.dot(ub.T)
         uu = self.sparse2dense(uu, u'epe_0.8_sparse')
         print(uu.shape)
-        print('writing to file...')
 
-        with open(targetfile, 'w+') as outfile:
-            for i in range(uu.shape[0]):
-                for j in range(uu.shape[1]):
-                    uij = int(uu[i][j])
-                    if uij != 0 and i != j:
-                        print('line：' + str(i) + '\t' + str(j) + '\t' + str(uij) + '\n ')
-                        outfile.write(str(i) + '\t' + str(j) + '\t' + str(int(uu[i][j])) + '\n')
+        print('writing to file...')
+        self.save(targetfile, uu)
 
     def get_BUB(self, ub, targetfile):
         print('PEP adjacency matrix multiplication...')
         mm = ub.T.dot(ub)
         mm = self.sparse2dense(mm, u'pep_0.8_sparse')
         print(mm.shape)
+
         print('writing to file...')
         self.save(targetfile, mm)
 
