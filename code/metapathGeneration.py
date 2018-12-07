@@ -14,7 +14,7 @@ class metapathGeneration:
         self.cinum = dtnum + 1
         ep = self.load_ub('../data/ep_0.8.train')
         # 获得EPE
-        self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
+        # self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
         # 获得EPDPE
         # self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
         # 获得EPDtPE
