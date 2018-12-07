@@ -120,7 +120,7 @@ class metapathGeneration:
             for i in range(matrix.shape[0])[1:]:
                 for j in range(matrix.shape[1])[1:]:
                     if matrix[i][j] != 0 and i != j:
-                        print('line：' + str(i) + '\t' + str(j) + '\t' + str(int(matrix[i][j])) + '\n ')
+                        print('line->' + str(i) + '\t' + str(j) + '\t' + str(int(matrix[i][j])) + '\n ')
                         outfile.write(str(i) + '\t' + str(j) + '\t' + str(int(matrix[i][j])) + '\n')
                         total += 1
         print('total = ', total)
