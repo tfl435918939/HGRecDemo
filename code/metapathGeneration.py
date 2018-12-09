@@ -14,17 +14,17 @@ class metapathGeneration:
         self.cinum = dtnum + 1
         ep = self.load_ub('../data/ep_0.8.train')
         # 获得EPE
-        # self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
+        self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
         # 获得EPDPE
         self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
         # 获得EPDtPE
-        # self.get_UBCiBU(ep, '../data/pdt.txt', '../data/metapath/epdtpe_0.8.txt')
+        self.get_UBCiBU(ep, '../data/pdt.txt', '../data/metapath/epdtpe_0.8.txt')
         # # 获得PEP
-        # self.get_BUB(ep, '../data/metapath/pep_0.8.txt')
+        self.get_BUB(ep, '../data/metapath/pep_0.8.txt')
         # # 获得PDtP
-        # self.get_BCiB('../data/pdt.txt', '../data/metapath/pdtp_0.8.txt')
+        self.get_BCiB('../data/pdt.txt', '../data/metapath/pdtp_0.8.txt')
         # # 获得PDP
-        # self.get_BCaB('../data/pd.txt', '../data/metapath/pdp_0.8.txt')
+        self.get_BCaB('../data/pd.txt', '../data/metapath/pdp_0.8.txt')
 
     # 1.将u-b矩阵中的值初始化为0
     # 2.从文件中读取u-b的评分数据，矩阵对应位置置为1
