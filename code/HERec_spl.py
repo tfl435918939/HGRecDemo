@@ -233,15 +233,15 @@ class HNERec:
 
 
 if __name__ == "__main__":
-    unum = 16239
-    inum = 14284
+    unum = 31868
+    inum = 24225
     ratedim = 10
     userdim = 30
     itemdim = 10
     train_rate = 0.8  # sys.argv[1]
 
-    user_metapaths = ['ubu', 'ubcibu', 'ubcabu']
-    item_metapaths = ['bub', 'bcib', 'bcab']
+    user_metapaths = ['epe', 'epdtpe', 'epdpe']
+    item_metapaths = ['pep', 'pdtp', 'pdp']
 
     for i in range(len(user_metapaths)):
         user_metapaths[i] += '_' + str(train_rate) + '.txt'
@@ -252,8 +252,8 @@ if __name__ == "__main__":
     # 'ubcabu_'+str(train_rate)+'.embedding']
 
     # item_metapaths = ['bub_'+str(train_rate)+'.embedding', 'bcib.embedding', 'bcab.embedding']
-    trainfile = '../data/ub_' + str(train_rate) + '.train'
-    testfile = '../data/ub_' + str(train_rate) + '.test'
+    trainfile = '../data/ep_' + str(train_rate) + '.train'
+    testfile = '../data/ep_' + str(train_rate) + '.test'
     steps = 100
     delta = 0.02
     beta_e = 0.1
