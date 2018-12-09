@@ -16,15 +16,15 @@ class metapathGeneration:
         # 获得EPE
         # self.get_UBU(ep, '../data/metapath/epe_0.8.txt')
         # 获得EPDPE
-        # self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
+        self.get_UBCaBU(ep, '../data/pd.txt', '../data/metapath/epdpe_0.8.txt')
         # 获得EPDtPE
-        self.get_UBCiBU(ep, '../data/pdt.txt', '../data/metapath/epdtpe_0.8.txt')
-        # 获得PEP
-        self.get_BUB(ep, '../data/metapath/pep_0.8.txt')
-        # 获得PDtP
-        self.get_BCiB('../data/pdt.txt', '../data/metapath/pdtp_0.8.txt')
-        # 获得PDP
-        self.get_BCaB('../data/pd.txt', '../data/metapath/pdp_0.8.txt')
+        # self.get_UBCiBU(ep, '../data/pdt.txt', '../data/metapath/epdtpe_0.8.txt')
+        # # 获得PEP
+        # self.get_BUB(ep, '../data/metapath/pep_0.8.txt')
+        # # 获得PDtP
+        # self.get_BCiB('../data/pdt.txt', '../data/metapath/pdtp_0.8.txt')
+        # # 获得PDP
+        # self.get_BCaB('../data/pd.txt', '../data/metapath/pdp_0.8.txt')
 
     # 1.将u-b矩阵中的值初始化为0
     # 2.从文件中读取u-b的评分数据，矩阵对应位置置为1
@@ -57,7 +57,7 @@ class metapathGeneration:
 
     def get_BCiB(self, bcifile, targetfile):
         print('PDtP adjacency matrix initialization..')
-        bci = self.matrix_init(bcifile)
+        bci = self.matrix_init(bcifile, self.bnum, self.cinum)
 
         print('PDtP adjacency matrix multiplication..')
         mm = bci.dot(bci.T)
@@ -68,7 +68,7 @@ class metapathGeneration:
 
     def get_BCaB(self, bcafile, targetfile):
         print('PDP adjacency matrix initialization..')
-        bca = self.matrix_init(bcafile)
+        bca = self.matrix_init(bcafile, self.bnum, self.canum)
 
         print('PDP adjacency matrix multiplication..')
         mm = bca.dot(bca.T)
@@ -79,7 +79,7 @@ class metapathGeneration:
 
     def get_UBCaBU(self, ub, bcafile, targetfile):
         print('EPDPE adjacency matrix initialization..')
-        bca = self.matrix_init(bcafile)
+        bca = self.matrix_init(bcafile, self.bnum, self.canum)
 
         print('EPDPE adjacency matrix multiplication...')
         uu = ub.dot(bca).dot(bca.T).dot(ub.T)
@@ -90,7 +90,7 @@ class metapathGeneration:
 
     def get_UBCiBU(self, ub, bcifile, targetfile):
         print('EPDtPE adjacency matrix initialization..')
-        bci = self.matrix_init(bcifile)
+        bci = self.matrix_init(bcifile, self.bnum, self.cinum)
 
         print('EPDtPE adjacency matrix multiplication...')
         uu = ub.dot(bci).dot(bci.T).dot(ub.T)
@@ -105,8 +105,8 @@ class metapathGeneration:
         matrix = matrix.toarray()
         return matrix
 
-    def matrix_init(self, file):
-        matrix = np.zeros((self.bnum, self.cinum))
+    def matrix_init(self, file, row_num, colomn_num):
+        matrix = np.zeros((row_num, colomn_num))
         with open(file, 'r') as infile:
             for line in infile.readlines():
                 m, d, _ = line.strip().split('\t')
@@ -120,7 +120,7 @@ class metapathGeneration:
             for i in range(matrix.shape[0])[1:]:
                 for j in range(matrix.shape[1])[1:]:
                     if matrix[i][j] != 0 and i != j:
-                        print('line->' + str(i) + '\t' + str(j) + '\t' + str(int(matrix[i][j])) + '\n ')
+                        # print('line->' + str(i) + '\t' + str(j) + '\t' + str(int(matrix[i][j])) + '\n ')
                         outfile.write(str(i) + '\t' + str(j) + '\t' + str(int(matrix[i][j])) + '\n')
                         total += 1
         print('total = ', total)
