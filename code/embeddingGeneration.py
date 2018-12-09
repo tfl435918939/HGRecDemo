@@ -6,8 +6,7 @@ walk_len = 5
 win_size = 3
 num_walk = 10
 
-metapaths = ['ubu', 'ubcabu', 'ubcibu', 'bub', 'bcab', 'bcib']
-# metapaths = ['bcab', 'bcib']
+metapaths = ['epe', 'epdpe', 'epdtpe', 'pep', 'pdp', 'pdtp']
 
 for metapath in metapaths:
     metapath = metapath + '_' + str(train_rate) + '.txt'
