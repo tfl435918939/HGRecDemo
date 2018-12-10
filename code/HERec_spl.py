@@ -80,6 +80,7 @@ class HNERec:
         with open(trainfile) as infile:
             for line in infile.readlines():
                 user, item, rating = line.strip().split('\t')
+                rating = float(rating)
                 R_train.append([int(user) - 1, int(item) - 1, int(rating)])
                 ba += int(rating)
                 n += 1
@@ -88,6 +89,7 @@ class HNERec:
         with open(testfile) as infile:
             for line in infile.readlines():
                 user, item, rating = line.strip().split('\t')
+                rating = float(rating)
                 R_test.append([int(user) - 1, int(item) - 1, int(rating)])
 
         return R_train, R_test, ba
